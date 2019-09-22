@@ -5,7 +5,7 @@ import firebaseApp from "./firebase.js"
 
 function getDataTemplate() {
   var db = firebaseApp.firestore();
-  db.collection("words").get()
+  db.collection("words")where('emotion', '==', 'mood').get()
     .then((snapshot) => {
       snapshot.forEach((doc) => {
         console.log(doc.id, '=>', doc.data());
