@@ -3,9 +3,12 @@ import logo from './logo.svg';
 import './App.css';
 import firebaseApp from "./firebase.js"
 
-function getDataTemplate() {
+var field = '';
+var value = '';
+
+function getWords() {
   var db = firebaseApp.firestore();
-  db.collection("words")where('emotion', '==', 'mood').get()
+  db.collection("words").where(field, '==', value).get()
     .then((snapshot) => {
       snapshot.forEach((doc) => {
         console.log(doc.id, '=>', doc.data());
