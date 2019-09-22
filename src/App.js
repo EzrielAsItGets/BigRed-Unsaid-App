@@ -5,7 +5,6 @@ import firebaseApp from "./firebase.js"
 
 var field = 'emotion1';
 var value = 'happy';
-var keys = [];
 
 function getWords() {
   var words = firebaseApp.firestore();
