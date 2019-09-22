@@ -16,6 +16,26 @@ function getWords() {
     })
 }
 
+function snapshotToArray(snapshot) {
+    var bubbles = [];
+    snapshot.forEach(function(childSnapshot) {
+        var item = childSnapshot.val();
+        item.key = childSnapshot.key;
+        bubbles.push(item);
+    });
+    return bubbles;
+};
+
+/* function getWords() {
+  var db = firebaseApp.firestore();
+  db.collection("words").where(field, '==', value).get()
+    .then((snapshot) => {
+      snapshot.forEach((doc) => {
+        console.log(doc.id, '=>', doc.data());
+      });
+    })
+} */
+
 function App() {
   return (
     <div className="App">
