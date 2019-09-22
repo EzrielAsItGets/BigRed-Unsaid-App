@@ -3,7 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import firebaseApp from "./firebase.js"
 
-function getData() {
+function getDataTemplate() {
   var db = firebaseApp.firestore();
   db.collection("words").get()
     .then((snapshot) => {
@@ -13,8 +13,17 @@ function getData() {
     })
 }
 
+function getHappyWords1() {
+  var db = firebaseApp.firestore();
+  db.collection("words").where('emotion1', '==', 'happy').get()
+    .then((snapshot) => {
+      snapshot.forEach((doc) => {
+        console.log(doc.id, '=>', doc.data());
+      });
+    })
+}
+
 function App() {
-  getData();
   return (
     <div className="App">
       <header className="App-header">
