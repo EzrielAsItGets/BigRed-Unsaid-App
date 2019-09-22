@@ -3,20 +3,21 @@ import logo from './logo.svg';
 import './App.css';
 import firebaseApp from "./firebase.js"
 
-var field = '';
-var value = '';
+var field = 'emotion1';
+var value = 'happy';
+var keys = [];
 
 function getWords() {
-  var db = firebaseApp.firestore();
-  db.collection("words").where(field, '==', value).get()
-    .then((snapshot) => {
-      snapshot.forEach((doc) => {
+  var words = firebaseApp.firestore();
+  words.collection('words').where(field, '==', value).get()
+    .then(function(querySnapshot) {
+      querySnapshot.forEach(function(doc) {
         console.log(doc.id, '=>', doc.data());
       });
-    })
+    });
 }
 
-function snapshotToArray(snapshot) {
+/* function snapshotToArray(snapshot) {
     var bubbles = [];
     snapshot.forEach(function(childSnapshot) {
         var item = childSnapshot.val();
@@ -24,7 +25,7 @@ function snapshotToArray(snapshot) {
         bubbles.push(item);
     });
     return bubbles;
-};
+} */
 
 /* function getWords() {
   var db = firebaseApp.firestore();
